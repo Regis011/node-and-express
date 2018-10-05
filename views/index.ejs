@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <title>Node JS and Express</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>This is EJS</h1>
+      <ul class="collection">
+        <% consults.map(consult => { %>
+          <li class="collection-item">Id: <%= consult.id %>, Name: <%= consult.name %>, Courdse: <%= consult.course %></li>
+        <% });  %>
+      </ul>
+    </div>
+  </body>
+</html>
