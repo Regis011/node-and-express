@@ -2,7 +2,7 @@
 ======
 #### Simple install of projects.
 
-`git clone git@git.chas.se:ChasSolutions/oden-company-overview/oden-company-overview.git`
+`git clone git@github.com:Regis011/node-and-express.git`
 
 `cd oden-company-overview`
 
