@@ -1,13 +1,10 @@
 import express from "express";
 import _ from "lodash";
-import consults from '../data/consults.json';
 import mongoose from 'mongoose';
 import config from '../config/config.js';
 import ConsultModel from '../config/database.js';
 
 const router = express.Router();
-
-let consultsArray = consults;
 
 router.get(`/`, (req, res) => {
   ConsultModel.find((err, consults) => {
