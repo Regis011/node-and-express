@@ -2,31 +2,15 @@ import express from "express";
 import _ from "lodash";
 import consults from '../data/consults.json';
 import mongoose from 'mongoose';
+import config from '../config/config.js';
+import ConsultModel from '../config/database.js';
 
 const router = express.Router();
 
-const DB_USER = '<user>';
-const DB_USER_PASSWORD = '<password>';
-const DB_URL =`mongodb://${DB_USER}:${DB_USER_PASSWORD}@ds123933.mlab.com:23933/sandbox_chas`;
-
 let consultsArray = consults;
 
-// Connect to mongoDB
-mongoose.connect(DB_URL);
-const db = mongoose.connection;
-db.once('open', () => {
-  console.log('Hello mLab!');
-});
-
-const ConsultSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  name: String,
-  course: String
-});
-const ConsultModal = mongoose.model('Consult', ConsultSchema);
-
 router.get(`/`, (req, res) => {
-  ConsultModal.find((err, consults) => {
+  ConsultModel.find((err, consults) => {
     if(err) res.status(500).send(err);
     res.json(consults);
   });
@@ -34,7 +18,7 @@ router.get(`/`, (req, res) => {
 
 router.get(`/:id`, (req, res) => {
 
-  ConsultModal.findById(req.params.id, (err, consult) => {
+  ConsultModel.findById(req.params.id, (err, consult) => {
     if(err) res.status(500).send(err);
     if(consult){
       res.json(consult);
@@ -52,7 +36,7 @@ router.post(`/`, (req,res) => {
     _id: id
   }, req.body);
 
-  const consult = new ConsultModal(consultToPersist);
+  const consult = new ConsultModel(consultToPersist);
 
   consult.save().then((err, consult) => {
     if(err) res.status(500).send(err);
@@ -62,7 +46,7 @@ router.post(`/`, (req,res) => {
 });
 
 router.put(`/:id`, (req,res) => {
-  ConsultModal.findById(req.params.id, (err, consult) => {
+  ConsultModel.findById(req.params.id, (err, consult) => {
     if(err) res.status(500).send(err);
     if(consult){
       consult.name = req.body.name;
@@ -79,7 +63,7 @@ router.put(`/:id`, (req,res) => {
 
 router.delete(`/:id`, (req,res) => {
 
-  ConsultModal.findByIdAndRemove(req.params.id, (err, consult) => {
+  ConsultModel.findByIdAndRemove(req.params.id, (err, consult) => {
     if(err) res.status(500).send(err);
     res.status(200).send(`Consult with id ${req.params.id} was deleted`);
   });
