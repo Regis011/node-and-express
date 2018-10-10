@@ -13,13 +13,3 @@ const db = mongoose.connection;
 db.once('open', () => {
   console.log('Hello mLab!');
 });
-
-const ConsultSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  name: String,
-  course: String
-});
-
-const ConsultModel = mongoose.model('Consult', ConsultSchema);
-
-module.exports = ConsultModel;

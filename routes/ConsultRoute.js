@@ -2,7 +2,7 @@ import express from "express";
 import _ from "lodash";
 import mongoose from 'mongoose';
 import config from '../config/config.js';
-import ConsultModel from '../config/database.js';
+import ConsultModel from '../models/consultModel';
 
 const router = express.Router();
 
