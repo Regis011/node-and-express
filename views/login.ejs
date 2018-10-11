@@ -5,21 +5,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <title>Login - Node JS and Express</title>
+    <style>
+    .nav .profile-nav .title  {
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: bottom;
+      float: right;
+    }
+    .nav .profile-nav img {
+      width: 100%;
+      max-width: 65px;
+      float: right;
+    }
+    </style>
   </head>
   <body>
 
     <section class="nav">
       <nav>
-        <ul>
-          <li><a href="/">Homepage</a></li>
+        <div class="nav-wrapper">
           <% if (user) { %>
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
-          <% } else { %>
-          <li class="active"><a href="/auth/login">Login</a></li>
+            <a href="/profile" class="profile-nav right">
+              <div class="title">Heloo <%= user.name %></div>
+              <img width="45" src="<%= user.image %>">
+            </a>
           <% } %>
-        </ul>
-      </nav>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="/">Homepage</a></li>
+            <% if (user) { %>
+              <li><a href="/profile">Profile</a></li>
+              <li><a href="/auth/logout">Logout</a></li>
+            <% } else { %>
+            <li class="active"><a href="/auth/login">Login</a></li>
+            <% } %>
+          </ul>
+        </nav>
+        </div>
     </section>
 
     <section class="container">
