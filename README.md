@@ -33,6 +33,7 @@ List of all packages in projects:
 |body-parser                    |babel-preset-env             |
 |connect-flash                  |babel-preset-stage-0         |
 |cookie-parser                  |nodemon            |
+|cookie-session                 |                   |
 |ejs                            |                   |
 |express-session                |                   |
 |lodash                         |                   |

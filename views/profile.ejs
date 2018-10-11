@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Node JS and Express</title>
+  </head>
+  <body>
+
+    <section class="nav">
+      <nav>
+        <ul>
+          <li><a href="/">Homepage</a></li>
+          <% if (user) { %>
+            <li class="active"><a href="/profile">Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+          <% } else { %>
+          <li><a href="/auth/login">Login</a></li>
+          <% } %>
+        </ul>
+      </nav>
+    </section>
+
+    <section class="container">
+      <h1>Control Panel</h1>
+      <h3>Hello <%= user.name %></h3>
+      <h4>Consults list</h4>
+      <div>
+        <ul class="collection">
+          <% consults.map(consult => { %>
+            <li class="collection-item">
+              <div>
+                Name: <%= consult.name %>, Course: <%= consult.course %>
+              </div>
+            </li>
+          <% });  %>
+        </ul>
+      </div>
+    </section>
+    <section class="profile-form">
+      <div class="container">
+        <h4>Add new Consult</h4>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <label for="first_name">Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate">
+                <label for="last_name">Course</label>
+              </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Add consult
+              <i class="material-icons right">send</i>
+            </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </body>
+</html>

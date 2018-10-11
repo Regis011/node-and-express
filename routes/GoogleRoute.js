@@ -9,13 +9,15 @@ const router = express.Router();
 
 // auth login
 router.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {
+    user: req.user
+  });
 });
 
 // auth logout
 router.get('/logout', (req, res) => {
-  // handle with passport
-  res.send('Loggin out!');
+  req.logout();
+  res.redirect('/');
 });
 
 // auth with Google
@@ -25,10 +27,7 @@ router.get('/google', passport.authenticate('google', {
 
 // callback route for google to redirect to
 router.get( config.GOOGLE_CALLBACK_URL, passport.authenticate('google'),(req, res) => {
-
-  //res.send(req.user);
   res.redirect('/profile/');
-  
 });
 
 module.exports = router;

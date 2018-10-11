@@ -50,10 +50,12 @@ server.use(config.AUTH_URL, GoogleRoute);
 server.use('/profile', ProfileRoute);
 
 server.get('/', (req, res) => {
+
   ConsultModel.find((err, consults) => {
     if(err) res.status(500).send(err);
     res.render('index', {
-      consults: consults
+      consults: consults,
+      user: req.user
     })
   });
 });

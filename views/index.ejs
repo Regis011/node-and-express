@@ -11,10 +11,13 @@
     <section class="nav">
       <nav>
         <ul>
-          <li><a href="/">Homepage</a></li>
-          <li><a href="/profile">Profile</a></li>
+          <li class="active"><a href="/">Homepage</a></li>
+          <% if (user) { %>
+            <li class="active"><a href="/profile">Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+          <% } else { %>
           <li><a href="/auth/login">Login</a></li>
-          <li><a href="/auth/logout">Logout</a></li>
+          <% } %>
         </ul>
       </nav>
     </section>
