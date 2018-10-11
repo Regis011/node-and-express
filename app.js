@@ -1,8 +1,10 @@
 import express from "express";
+import cookieSession from 'cookie-session';
 import morgan from 'morgan';
 import passport from 'passport';
 import ConsultRoute from "./routes/ConsultRoute";
 import GoogleRoute from "./routes/GoogleRoute";
+import ProfileRoute from "./routes/ProfileRoute";
 import _ from "lodash";
 import bodyParser from "body-parser";
 import path from "path";
@@ -12,7 +14,6 @@ import config from './config/config.js';
 import ConsultModel from './models/consultModel';
 import keys from './config/keys.js';
 import passportSetup from './config/passport';
-import cookieSession from 'cookie-session';
 
 const tlsOptions = {
   key: fs.readFileSync(path.join('key.pem')),
@@ -30,18 +31,23 @@ server.use('/static', express.static('public'));
 server.set('views', path.join('views'));
 server.set('view engine', 'ejs');
 
+// set up session cookies
 server.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
-  keys: [keys.cookieKey]
-}))
+  name: 'session',
+  keys: [keys.cookieKey],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
 // initialize passport
 server.use(passport.initialize());
-passport.use(passport.session());
+server.use(passport.session());
+
 
 // set up Routes
 server.use(config.CONSULTS_BASE_URL, ConsultRoute);
 server.use(config.AUTH_URL, GoogleRoute);
+server.use('/profile', ProfileRoute);
 
 server.get('/', (req, res) => {
   ConsultModel.find((err, consults) => {

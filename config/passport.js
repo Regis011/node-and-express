@@ -13,8 +13,8 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (user) => {
-    done(null, user);
+  User.findById(id).then((user) => {
+    done(null, user)
   })
 })
 
@@ -40,10 +40,10 @@ passport.use(new GoogleStrategy({
           name: profile.displayName,
           email: profile.emails[0].value,
           image: profile.photos[0].value
-        }, (err, user) => {
+        }, (err, newUser) => {
           if (err) return handleError(err);
-          console.log('new user => ' + user);
-          done(null, user)
+          console.log('new user => ' + newUser);
+          done(null, newUser)
         });
       }
     })

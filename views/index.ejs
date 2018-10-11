@@ -12,6 +12,7 @@
       <nav>
         <ul>
           <li><a href="/">Homepage</a></li>
+          <li><a href="/profile">Profile</a></li>
           <li><a href="/auth/login">Login</a></li>
           <li><a href="/auth/logout">Logout</a></li>
         </ul>
@@ -22,7 +23,7 @@
       <h1>Consults</h1>
       <ul class="collection">
         <% consults.map(consult => { %>
-          <li class="collection-item">Id: <%= consult.id %>, Name: <%= consult.name %>, Courdse: <%= consult.course %></li>
+          <li class="collection-item">Name: <%= consult.name %>, Course: <%= consult.course %></li>
         <% });  %>
       </ul>
     </section>
