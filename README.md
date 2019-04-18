@@ -5,9 +5,9 @@
 
 #### Simple install of projects.
 ```zsh
-> `git clone git@github.com:Regis011/node-and-express.git`
+> `git clone git@github.com:Regis011/node-and-express.git project-name`
 
-> `cd oden-company-overview`
+> `cd project-name`
 
 > `npm install`
 ```
