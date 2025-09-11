@@ -1,40 +1,40 @@
 {
   "name": "node-and-express",
   "version": "1.0.0",
-  "description": "Node and Express",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon ./app.js --exec babel-node -e js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "node",
-    "express",
-    "javascript"
-  ],
-  "author": "Vladimir Rancic",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "nodemon": "^1.18.4"
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "node scripts/dev.js",
+    "dev:simple": "nodemon --watch src --ext ts --exec \"ts-node src/index.ts\"",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "jest"
   },
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.3",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
-    "cookie-session": "^2.0.0-beta.3",
-    "dotenv": "^16.0.0",
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "express-session": "^1.15.6",
-    "lodash": "^4.17.11",
-    "mongoose": "^5.3.1",
-    "morgan": "^1.9.1",
-    "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0",
-    "passport-local": "^1.0.0"
+    "@types/colors": "^1.2.4",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^8.18.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^24.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
+    "eslint": "^8.57.1",
+    "jest": "^29.6.1",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.6.2",
+    "supertest": "^6.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
